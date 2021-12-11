@@ -1,10 +1,12 @@
-# NgKc
+# Angular Keycloak demo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
-## Development server
+## Development server & Keycloak Integration
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+For demo purposes, the docker-compose file in the `keycloak` directory can be used to launch a keycloak container. Before checking out the application, a client with Id `angular-demo` needs to be created in keycloak.
 
 ## Code scaffolding
 
