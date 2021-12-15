@@ -1,1 +1,9 @@
-<p>home works!</p>
+<h1>JWT Contents can be used in the application for building auth guards:</h1>
+
+<h2>User Id:</h2> {{token.sub}}
+
+<h2>Roles:</h2> {{token.realm_access.roles.join(', ')}}
+
+
+<h2>Scopes</h2>
+<p>{{token.scope}}</p>

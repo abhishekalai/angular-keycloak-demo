@@ -2,6 +2,37 @@ import { Injectable } from '@angular/core';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs/operators';
 
+export interface IAccessTokenContents {
+  exp: number;
+  iat: number;
+  auth_time: number;
+  jti: string;
+  iss: string;
+  aud: string[];
+  sub: string;
+  typ: string;
+  azp: string;
+  nonce: string;
+  session_state: string;
+  acr: string;
+  'allowed-origins': string[];
+  realm_access: RealmAccess;
+  resource_access: Resourceaccess;
+  scope: string;
+  email_verified: boolean;
+  preferred_username: string;
+}
+
+interface Resourceaccess {
+  'master-realm': RealmAccess;
+  account: RealmAccess;
+}
+
+interface RealmAccess {
+  roles: string[];
+}
+
+
 @Injectable()
 export class AuthConfigService {
 
@@ -47,6 +78,11 @@ export class AuthConfigService {
     private handleNewToken() {
       this._decodedAccessToken = this.oauthService.getAccessToken();
       this._decodedIDToken = this.oauthService.getIdToken();
+      this.oauthService.processIdToken(this._decodedIDToken, this._decodedAccessToken).then(_ => {});
     }
 
+    public getAccessTokenContents(): IAccessTokenContents {
+      const token = this.oauthService.getAccessToken();
+      return JSON.parse(window.atob(token.split('.')[1]));
+    }
 }

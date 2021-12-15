@@ -22,7 +22,7 @@ export const environment = {
     // IN PRODUCTION
     requireHttps: false,
     // at_hash is not present in JWT token
-    showDebugInformation: true,
-    disableAtHashCheck: true
+    showDebugInformation: false,
+    disableAtHashCheck: true,
   }
 };
